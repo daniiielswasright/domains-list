@@ -1,0 +1,101 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* =========================================
+   1. COLOR PALETTE
+   ========================================= */
+
+:root {
+  color-scheme: dark;
+
+  --bg-primary: #0D1117;
+  --bg-header: #010409;
+  --bg-content: #161B22;
+  --bg-elevated: #21262D;
+
+  --text-primary: #E6EDF3;
+  --text-secondary: #8B949E;
+
+  --border-color: #30363D;
+
+  --link-color: #58A6FF;
+  --link-hover: #79C0FF;
+  --link-visited: #A371F7;
+
+  --accent-green: #3FB950;
+}
+
+/* =========================================
+   2. GLOBAL TYPOGRAPHY
+   ========================================= */
+
+body {
+  font-family: "Atkinson Hyperlegible Next",
+               "Atkinson Hyperlegible",
+               sans-serif;
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.7;
+
+  color: var(--text-primary);
+  background: var(--bg-primary);
+}
+
+/* =========================================
+   3. HEADINGS
+   ========================================= */
+
+h1, h2, h3 {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+h4, h5, h6 {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* =========================================
+   4. LINKS
+   ========================================= */
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+/* =========================================
+   5. PARAGRAPHS
+   ========================================= */
+
+p {
+  color: var(--text-primary);
+  margin-bottom: 1.2em;
+}
+
+/* =========================================
+   6. BORDERS AND SEPARATORS
+   ========================================= */
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+}
+
+table,
+th,
+td {
+  border-color: var(--border-color);
+}
