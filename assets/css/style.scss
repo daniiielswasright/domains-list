@@ -208,3 +208,39 @@ footer {
 footer a {
   color: var(--link-color);
 }
+
+/* =========================================
+   DOMAIN LIST LINE NUMBERS
+   ========================================= */
+
+.domain-list {
+  counter-reset: domain-line;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  font-family: "Atkinson Hyperlegible Mono", monospace;
+  font-size: 14px;
+}
+
+.domain-list li {
+  counter-increment: domain-line;
+  position: relative;
+  padding: 3px 0 3px 56px;
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.domain-list li::before {
+  content: counter(domain-line);
+  position: absolute;
+  left: 0;
+  width: 40px;
+  text-align: right;
+  color: #6E7681;
+  user-select: none;
+}
+
+.domain-list li:hover {
+  background: var(--bg-elevated);
+}
