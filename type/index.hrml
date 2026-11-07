@@ -1,1 +1,67 @@
 
+---
+---
+
+<h1>Domain Index by Type</h1>
+
+<p>This section organizes domains and hostnames by their primary function or service.</p>
+
+<p>Select a category below to browse its corresponding entries.</p>
+
+<h2>Browse by Category</h2>
+
+<p>
+  <a href="ads/">Advertising &amp; Ad Tech</a><br>
+  Domains used for digital advertising, ad delivery, bidding, and campaign measurement.
+</p>
+
+<p>
+  <a href="analytics/">Analytics &amp; Telemetry</a><br>
+  Domains used to collect usage data, monitor activity, and measure application or website performance.
+</p>
+
+<p>
+  <a href="app-web-services/">Application &amp; Web Services</a><br>
+  Domains supporting application functionality, APIs, SDKs, backend services, and website infrastructure.
+</p>
+
+<p>
+  <a href="cloud-hosting/">Cloud Hosting &amp; CDN</a><br>
+  Domains used for cloud computing, hosting, storage, and content distribution networks.
+</p>
+
+<p>
+  <a href="dns-network/">DNS &amp; Network</a><br>
+  Domains supporting domain resolution, network connectivity, and related network services.
+</p>
+
+<p>
+  <a href="identity-authentication/">Identity &amp; Authentication</a><br>
+  Domains used for account identity, login, authentication, and access management.
+</p>
+
+<p>
+  <a href="location/">Location &amp; Geo</a><br>
+  Domains used for geolocation, mapping, navigation, and location-based services.
+</p>
+
+<p>
+  <a href="messaging/">Messaging &amp; Realtime</a><br>
+  Domains supporting messaging, notifications, chat, and real-time communication.
+</p>
+
+<p>
+  <a href="privacy-tracking/">Privacy &amp; Tracking</a><br>
+  Domains associated with user tracking, consent management, privacy controls, and data collection preferences.
+</p>
+
+<p>
+  <a href="streaming/">Audio, Video &amp; Media Delivery</a><br>
+  Domains used to stream, process, and distribute audio, video, and other media content.
+</p>
+
+<h2>About This Index</h2>
+
+- Categories are organized by their primary function.
+- Some domains may support multiple functions but are listed under the category that best represents their primary role.
+- This index provides a functional classification of the domains and hostnames documented in this repository.
