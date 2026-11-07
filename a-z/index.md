@@ -60,10 +60,7 @@
 
 <h2>About This Index</h2>
 
-<ul>
-  <li>Domains and hostnames are listed alphabetically.</li>
-  <li>Each entry represents a hostname rather than necessarily an entire parent domain.</li>
-  <li>Related hostnames are listed separately when they appear as distinct entries in the inventory.</li>
-</ul>
-
-<p>This index is intended as a reference for browsing and locating individual domains and hostnames.</p>
+- All domains and hostnames are organized alphabetically.
+- Root domains are listed under their own names. For example, "google.com" is listed under G for Google.
+- Subdomains are alphabetized under the name of their root domain rather than by the first character of the full hostname. For example, "api.stripe.com" is listed under S for Stripe, and "mbiz.uber.com" is listed under U for Uber. This also applies to longer hostnames. "ads-production-public.s3.us-east-1.amazonaws.com" is listed under A for Amazon, while "us.telemetry.zoom.us" is listed under Z for Zoom.
+- This approach keeps related domains and subdomains grouped together.
