@@ -17,44 +17,30 @@
     {% include head-custom.html %}
   </head>
   <body>
-    <div class="wrapper">
-      <header {% unless site.description or site.github.project_tagline %} class="without-description" {% endunless %}>
-        <h1>{{ site.title | default: site.github.repository_name }}</h1>
-        {% if site.description or site.github.project_tagline %}
-          <p>{{ site.description | default: site.github.project_tagline }}</p>
-        {% endif %}
-        <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ github_name }}</small></a></p>
+    <body>
   <div class="wrapper">
-  <header {% unless site.description or site.github.project_tagline %}class="no-description"{% endunless %}>
-    <h1>{{ site.title | default: site.github.repository_name }}</h1>
+    <header {% unless site.description or site.github.project_tagline %}class="without-description"{% endunless %}>
+      <h1>{{ site.title | default: site.github.repository_name }}</h1>
+      {% if site.description or site.github.project_tagline %}
+        <p>{{ site.description | default: site.github.project_tagline }}</p>
+      {% endif %}
+      <p class="view">
+        <a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ github_name }}</small></a>
+      </p>
+    </header>
 
-    {% if site.description or site.github.project_tagline %}
-      <p>{{ site.description | default: site.github.project_tagline }}</p>
-    {% endif %}
+    <nav class="site-navigation">
+      <a href="javascript:history.back()" class="back-button">← Back</a>
+      <a href="https://daniiielswasright.github.io/">Home</a> •
+      <a href="https://daniiielswasright.github.io/pages/about">About</a> •
+      <a href="https://daniiielswasright.github.io/domains-list/a-z/">Domains Index</a> •
+      <a href="https://daniiielswasright.github.io/pages/updates">Updates</a>
+    </nav>
 
-    <p class="view">
-      <a href="{{ site.github.repository_url }}">
-        View the Project on GitHub <small>{{ github_name }}</small>
-      </a>
-    </p>
-  </header>
-
-  <nav class="site-navigation">
-    <a href="javascript:history.back()" class="back-button">← Back</a>
-    <a href="https://daniiielswasright.github.io/">Home</a> •
-    <a href="https://daniiielswasright.github.io/pages/about">About</a> •
-    <a href="https://daniiielswasright.github.io/domains-list/a-z/">Domains Index</a> •
-    <a href="https://daniiielswasright.github.io/pages/updates">Updates</a>
-  </nav>
-  </div>
-        </ul>
-      </header>
-      <section>
-
+    <section>
       {{ content }}
-
-      </section>
-    </div>
+    </section>
+  </div>
     <footer>
     {% if site.github.is_project_page %}
       <p>Project maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
