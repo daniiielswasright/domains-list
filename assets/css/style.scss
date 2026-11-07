@@ -252,3 +252,34 @@ footer a {
   background: var(--bg-elevated);
 }
 
+.site-navigation {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: 12px 20px;
+  background: #010409;
+  border-top: 1px solid #30363D;
+  border-bottom: 1px solid #30363D;
+}
+
+.site-navigation a {
+  display: inline-block;
+  padding: 6px 14px;
+  color: #8B949E;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-navigation a:hover {
+  color: #58A6FF;
+  background: #161B22;
+  border-radius: 4px;
+}
+
+.site-navigation .back-button {
+  margin-right: auto;
+  color: #58A6FF;
+}
+
