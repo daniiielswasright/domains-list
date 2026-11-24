@@ -1,33 +1,38 @@
 ```
-domains/
-├── index.md
+domains-list/
+├── README.md                  ← site homepage
+├── _config.yml
+├── _layouts/
+│   └── default.html
+├── assets/
+│   └── css/
+│       └── style.scss
 │
-├── lists/
-│   ├── index.md
-│   ├── domains-a-z.md
-│   └── domains-by-type.md
+├── a-z/
+│   ├── index.html             ← browse by letter
+│   ├── all/index.html         ← every domain on one page
+│   ├── 0-9/index.html
+│   ├── a/index.html
+│   ├── b/index.html
+│   ├── ...
+│   └── z/index.html
 │
-├── types/
-│   ├── index.md
-│   ├── advertising-bidding.md
-│   ├── analytics-telemetry.md
-│   ├── app-sdk-services.md
-│   ├── audio-video-streaming.md
-│   ├── cloud-hosting-cdn.md
-│   ├── content-delivery-media.md
-│   ├── dns-network.md
-│   ├── identity-auth.md
-│   ├── location-geo.md
-│   ├── messaging-realtime.md
-│   ├── privacy-tracking.md
-│   ├── social-platforms.md
-│   └── web-infrastructure.md
-│
-└── reference/
-    ├── index.md
-    ├── domains-a-z.md
-    └── domains/
-        ├── a/
-        ├── b/
-        ├── c/
-        └── ...
+└── type/
+    ├── index.html             ← browse by category
+    ├── ads/index.html
+    ├── ai/index.html
+    ├── analytics/index.html
+    ├── app-web-services/index.html
+    ├── cloud-hosting/index.html
+    ├── device-browser-app-store/index.html
+    ├── dns-network/index.html
+    ├── help-support/index.html
+    ├── identity-authentication/index.html
+    ├── location/index.html
+    ├── messaging/index.html
+    ├── payments-commerce/index.html
+    ├── productivity/index.html
+    ├── security-privacy/index.html
+    ├── social/index.html
+    └── streaming/index.html
+```
