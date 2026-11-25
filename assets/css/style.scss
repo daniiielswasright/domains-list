@@ -298,3 +298,9 @@ footer a {
   color: #58A6FF;
 }
 
+
+/* Roadmap checklists: the ☐ marker replaces the bullet */
+ul.checklist {
+  list-style: none;
+  padding-left: 20px;
+}
