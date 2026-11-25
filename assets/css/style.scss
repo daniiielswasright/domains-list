@@ -22,6 +22,9 @@
   --link-visited: #A371F7;
 
   --accent-green: #3FB950;
+
+  --heading-section: #7EE787;
+  --heading-sub: #FFA657;
 }
 
 /* =========================================
@@ -92,6 +95,18 @@ h1, h2, h3 {
 h4, h5, h6 {
   color: var(--text-primary);
   font-weight: 600;
+}
+
+/* Section headings stand out from the page title (h1) */
+section h2 {
+  color: var(--heading-section);
+}
+
+section h3,
+section h4,
+section h5,
+section h6 {
+  color: var(--heading-sub);
 }
 
 /* =========================================

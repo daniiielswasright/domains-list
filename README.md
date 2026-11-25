@@ -7,6 +7,10 @@ domains-list/
 │
 ├── index/                     ← domains index (A–Z + types)
 │
+├── pages/                     ← about, updates & roadmap
+│   ├── about/
+│   └── updates/
+│
 ├── a-z/                       ← browse by letter
 │   ├── all/                   ← every domain on one page
 │   ├── 0-9/
