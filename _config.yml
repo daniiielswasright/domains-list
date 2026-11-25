@@ -12,3 +12,6 @@ defaults:
       type: pages
     values:
       layout: default
+
+exclude:
+  - ROADMAP.md

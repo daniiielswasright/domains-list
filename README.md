@@ -7,6 +7,8 @@ domains-list/
 │
 ├── index/                     ← domains index (A–Z + types)
 │
+├── search/                    ← search every domain
+│
 ├── pages/                     ← about, updates & roadmap
 │   ├── about/
 │   └── updates/
