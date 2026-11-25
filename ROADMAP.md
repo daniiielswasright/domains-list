@@ -14,18 +14,19 @@ Suggested order: 1 → 8 (owner column) → 2 → 12, then the rest as data come
 - [x] Search box in the menu on every page (opens the search page with `?q=`)
 - [x] Each result links to its A–Z page and its categories
 - [x] Shareable searches (`/search/?q=tiktok`)
-- [ ] Match on owner too, once the owner column exists (item 8), so "Meta" finds `fbcdn.net`
+- [x] Match on owner too, so "Meta" finds `fbcdn.net`
 
-## 2. Provider pages
+## 2. Provider pages ✅
 
-Meta (Facebook, Instagram, Threads, WhatsApp), ByteDance (TikTok, CapCut), Cloudflare,
-Google, Microsoft, Amazon, Apple, X / Twitter, Snap, Reddit.
+Amazon, Apple, ByteDance (TikTok, CapCut), Cloudflare, Google, Meta (Facebook, Instagram,
+Threads, WhatsApp), Microsoft, Reddit, Snap, X Corp.
 
-- [ ] Fill in the `owner` column in `_data/domains.csv` first (item 8)
-- [ ] Generate `providers/<name>/index.html` for each company: domain count, list grouped by root domain
-- [ ] Add a `providers/` hub page
-- [ ] Add a "Browse by Provider" section to the Domains Index
-- [ ] Add `providers/` to the README tree
+- [x] Fill in the `owner` column in `_data/domains.csv` first (item 8)
+- [x] Generate `providers/<name>/index.html` for each company: domain count, list grouped by root domain (built from the CSV by `_includes/provider-domains.html`)
+- [x] Add a `providers/` hub page (table of providers and their root domains)
+- [x] Add a "Browse by Provider" section to the Domains Index
+- [x] Add `providers/` to the README tree
+- [ ] Add more providers as needed: create `providers/<name>/index.html` with `owner: <Owner>` in the front matter
 
 ## 3. Main blocklist
 
@@ -57,8 +58,9 @@ Google, Microsoft, Amazon, Apple, X / Twitter, Snap, Reddit.
 
 ## 8. "What it does" notes and owner
 
-- [ ] Create `_data/domains.csv` with the columns `domain, owner, note, block`
-- [ ] Fill in `owner` for every domain (quick, and it unlocks provider pages and owner search)
+- [x] Create `_data/domains.csv` with the columns `domain, root, owner, note, block`
+- [x] Fill in `owner` for every domain (quick, and it unlocks provider pages and owner search)
+- [ ] Review the domains whose owner is `Unknown` (26 root domains, mostly ad and adult networks)
 - [ ] Fill in `note`, starting with the largest categories
 - [ ] Show the note as a small grey line under each domain on the A–Z pages (owner is **not** shown there; it lives on the provider pages)
 - [ ] Domains without a note just show the domain
@@ -93,5 +95,6 @@ listed per domain. The ranges each company owns are stable, so they go on the pr
 
 - Every page is a folder with an `index.html` inside (for example `a-z/g/index.html`).
 - When a list changes, update the domain count at the top of that page, the All page, and the totals on the Domains Index and Search page.
+- When adding a domain, also add a row to `_data/domains.csv` (keep it sorted by root, then domain). Provider pages and owner search update from it automatically.
 - Search reads the live pages, so it updates itself.
 - The site is published from the `home` branch.

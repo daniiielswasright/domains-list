@@ -32,9 +32,14 @@
     var allUrl = new URL("a-z/all/", base).href;
     var indexUrl = new URL("index/", base).href;
 
-    loading = Promise.all([fetchDoc(allUrl), fetchDoc(indexUrl)]).then(function (docs) {
+    var ownersUrl = new URL("assets/data/owners.json", base).href;
+    var owners = fetch(ownersUrl).then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { return null; });
+
+    loading = Promise.all([fetchDoc(allUrl), fetchDoc(indexUrl), owners]).then(function (docs) {
       var all = docs[0];
       var index = docs[1];
+      var od = docs[2] || { domains: {}, providers: {} };
       var byDomain = Object.create(null);
       var list = [];
 
@@ -48,7 +53,14 @@
         var d = el.textContent.trim().toLowerCase();
         if (!d || byDomain[d]) return;
         var slug = letter === "0-9" ? "0-9" : letter.toLowerCase();
-        var entry = { domain: d, letter: letter, letterUrl: new URL("a-z/" + slug + "/", base).href, cats: [] };
+        var owner = od.domains[d] || "";
+        var provider = od.providers[owner];
+        var entry = {
+          domain: d, letter: letter, letterUrl: new URL("a-z/" + slug + "/", base).href, cats: [],
+          owner: owner === "Unknown" ? "" : owner,
+          ownerKey: owner === "Unknown" ? "" : owner.toLowerCase(),
+          ownerUrl: provider ? new URL(provider, window.location.href).href : null
+        };
         byDomain[d] = entry;
         list.push(entry);
       });
@@ -114,7 +126,13 @@
       return;
     }
 
-    var matches = data.filter(function (e) { return e.domain.indexOf(q) !== -1; });
+    // Name matches first, then domains whose owner matches (e.g. "meta" finds fbcdn.net).
+    var byName = [], byOwner = [];
+    data.forEach(function (e) {
+      if (e.domain.indexOf(q) !== -1) byName.push(e);
+      else if (e.ownerKey && e.ownerKey.indexOf(q) !== -1) byOwner.push(e);
+    });
+    var matches = byName.concat(byOwner);
 
     if (!matches.length) {
       status.textContent = "No domains match \u2018" + raw.trim() + "\u2019.";
@@ -132,6 +150,12 @@
       li.appendChild(name);
 
       var tags = el("span", "search-tags");
+      if (e.owner) {
+        var ow = el(e.ownerUrl ? "a" : "span", "search-owner", e.owner);
+        if (e.ownerUrl) ow.href = e.ownerUrl;
+        tags.appendChild(ow);
+        tags.appendChild(document.createTextNode(" \u00b7 "));
+      }
       var lt = el("a", null, e.letter);
       lt.href = e.letterUrl;
       lt.title = "A\u2013Z page " + e.letter;

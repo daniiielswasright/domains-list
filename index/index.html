@@ -146,10 +146,65 @@
   Domains associated with social networks, content sharing, and social interactions.
 </p>
 
+<h2>Browse by Provider</h2>
+
+<p>Domains grouped by the company that owns them. <a href="../providers/">See all providers</a></p>
+
+<p>
+  <a href="../providers/amazon/">Amazon</a> · {% assign r = site.data.domains | where: "owner", "Amazon" %}{{ r.size }} domains<br>
+  Amazon Web Services (AWS), CloudFront, Amazon Ads, Alexa and Amazon shopping.
+</p>
+
+<p>
+  <a href="../providers/apple/">Apple</a> · {% assign r = site.data.domains | where: "owner", "Apple" %}{{ r.size }} domains<br>
+  Apple services, the App Store and iTunes.
+</p>
+
+<p>
+  <a href="../providers/bytedance/">ByteDance</a> · {% assign r = site.data.domains | where: "owner", "ByteDance" %}{{ r.size }} domains<br>
+  TikTok, CapCut and TikTok Pangle (ads).
+</p>
+
+<p>
+  <a href="../providers/cloudflare/">Cloudflare</a> · {% assign r = site.data.domains | where: "owner", "Cloudflare" %}{{ r.size }} domains<br>
+  Cloudflare DNS, CDN, security challenges, Pages and Radar.
+</p>
+
+<p>
+  <a href="../providers/google/">Google</a> · {% assign r = site.data.domains | where: "owner", "Google" %}{{ r.size }} domains<br>
+  Google services, YouTube, Android, Firebase, Google Ads (DoubleClick) and Google Cloud.
+</p>
+
+<p>
+  <a href="../providers/meta/">Meta</a> · {% assign r = site.data.domains | where: "owner", "Meta" %}{{ r.size }} domains<br>
+  Facebook, Instagram, Threads and WhatsApp.
+</p>
+
+<p>
+  <a href="../providers/microsoft/">Microsoft</a> · {% assign r = site.data.domains | where: "owner", "Microsoft" %}{{ r.size }} domains<br>
+  Microsoft and Azure services, Bing, Skype, LinkedIn and GitHub.
+</p>
+
+<p>
+  <a href="../providers/reddit/">Reddit</a> · {% assign r = site.data.domains | where: "owner", "Reddit" %}{{ r.size }} domains<br>
+  Reddit, its media servers and developer platform.
+</p>
+
+<p>
+  <a href="../providers/snap/">Snap</a> · {% assign r = site.data.domains | where: "owner", "Snap" %}{{ r.size }} domains<br>
+  Snapchat and Snap Kit.
+</p>
+
+<p>
+  <a href="../providers/x/">X Corp</a> · {% assign r = site.data.domains | where: "owner", "X Corp" %}{{ r.size }} domains<br>
+  X (formerly Twitter) and Periscope.
+</p>
+
 <h2>About This Index</h2>
 
 <ul>
   <li>The A–Z index lists every domain alphabetically by its root domain, so related subdomains stay grouped together. For example, "api.stripe.com" is listed under S for Stripe.</li>
   <li>The type index groups domains by their primary function.</li>
+  <li>The provider pages group domains by the company that owns them.</li>
   <li>Most domains appear in one category. A few that clearly serve two roles, such as social platform media servers, appear in both.</li>
 </ul>

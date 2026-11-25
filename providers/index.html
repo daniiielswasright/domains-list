@@ -1,0 +1,68 @@
+---
+---
+
+<h1>Providers</h1>
+
+<p>Every domain grouped by the company that owns it. Providers and their domains are listed alphabetically.</p>
+
+<table class="provider-table">
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>Domains</th>
+      <th>Root domains</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="amazon/">Amazon</a></td>
+      {% assign r = site.data.domains | where: "owner", "Amazon" %}<td>{{ r.size }}</td>
+      <td>{{ r | map: "root" | uniq | join: ", " }}</td>
+    </tr>
+    <tr>
+      <td><a href="apple/">Apple</a></td>
+      {% assign r = site.data.domains | where: "owner", "Apple" %}<td>{{ r.size }}</td>
+      <td>{{ r | map: "root" | uniq | join: ", " }}</td>
+    </tr>
+    <tr>
+      <td><a href="bytedance/">ByteDance</a></td>
+      {% assign r = site.data.domains | where: "owner", "ByteDance" %}<td>{{ r.size }}</td>
+      <td>{{ r | map: "root" | uniq | join: ", " }}</td>
+    </tr>
+    <tr>
+      <td><a href="cloudflare/">Cloudflare</a></td>
+      {% assign r = site.data.domains | where: "owner", "Cloudflare" %}<td>{{ r.size }}</td>
+      <td>{{ r | map: "root" | uniq | join: ", " }}</td>
+    </tr>
+    <tr>
+      <td><a href="google/">Google</a></td>
+      {% assign r = site.data.domains | where: "owner", "Google" %}<td>{{ r.size }}</td>
+      <td>{{ r | map: "root" | uniq | join: ", " }}</td>
+    </tr>
+    <tr>
+      <td><a href="meta/">Meta</a></td>
+      {% assign r = site.data.domains | where: "owner", "Meta" %}<td>{{ r.size }}</td>
+      <td>{{ r | map: "root" | uniq | join: ", " }}</td>
+    </tr>
+    <tr>
+      <td><a href="microsoft/">Microsoft</a></td>
+      {% assign r = site.data.domains | where: "owner", "Microsoft" %}<td>{{ r.size }}</td>
+      <td>{{ r | map: "root" | uniq | join: ", " }}</td>
+    </tr>
+    <tr>
+      <td><a href="reddit/">Reddit</a></td>
+      {% assign r = site.data.domains | where: "owner", "Reddit" %}<td>{{ r.size }}</td>
+      <td>{{ r | map: "root" | uniq | join: ", " }}</td>
+    </tr>
+    <tr>
+      <td><a href="snap/">Snap</a></td>
+      {% assign r = site.data.domains | where: "owner", "Snap" %}<td>{{ r.size }}</td>
+      <td>{{ r | map: "root" | uniq | join: ", " }}</td>
+    </tr>
+    <tr>
+      <td><a href="x/">X Corp</a></td>
+      {% assign r = site.data.domains | where: "owner", "X Corp" %}<td>{{ r.size }}</td>
+      <td>{{ r | map: "root" | uniq | join: ", " }}</td>
+    </tr>
+  </tbody>
+</table>

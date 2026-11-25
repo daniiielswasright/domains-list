@@ -1,0 +1,6 @@
+---
+layout: null
+---
+{%- assign provs = site.pages | where_exp: "p", "p.owner" | sort: "owner" -%}
+{"providers":{ {%- for p in provs -%}{{ p.owner | jsonify }}:{{ p.url | relative_url | jsonify }}{% unless forloop.last %},{% endunless %}{%- endfor -%} },
+"domains":{ {%- for r in site.data.domains -%}{{ r.domain | jsonify }}:{{ r.owner | jsonify }}{% unless forloop.last %},{% endunless %}{%- endfor -%} }}

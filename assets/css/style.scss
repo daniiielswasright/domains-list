@@ -345,6 +345,7 @@ ul.checklist {
 #search-status {
   color: var(--text-secondary);
   min-height: 1.7em;
+  margin-top: 12px;
 }
 
 .search-results li {
@@ -383,4 +384,19 @@ mark {
     box-sizing: border-box;
     width: 100%;
   }
+}
+
+.search-owner {
+  color: var(--heading-sub);
+}
+
+a.search-owner:visited {
+  color: var(--heading-sub);
+}
+
+/* Providers table: let the root-domain list wrap */
+.provider-table td:last-child {
+  font-size: 14px;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
 }

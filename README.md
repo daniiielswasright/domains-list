@@ -2,12 +2,26 @@
 domains-list/
 ├── README.md                  ← site homepage
 ├── _config.yml
+├── _data/                     ← domains.csv (owner data)
+├── _includes/
 ├── _layouts/
 ├── assets/
 │
 ├── index/                     ← domains index (A–Z + types)
 │
 ├── search/                    ← search every domain
+│
+├── providers/                 ← domains grouped by owner
+│   ├── amazon/
+│   ├── apple/
+│   ├── bytedance/
+│   ├── cloudflare/
+│   ├── google/
+│   ├── meta/
+│   ├── microsoft/
+│   ├── reddit/
+│   ├── snap/
+│   └── x/
 │
 ├── pages/                     ← about, updates & roadmap
 │   ├── about/
