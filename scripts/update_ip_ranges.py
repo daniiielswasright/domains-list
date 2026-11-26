@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Rebuild _data/ip-ranges.csv: the IP ranges each provider owns.
 
-Amazon comes from Amazon's official list. Every other provider comes from
-RIPEstat (stat.ripe.net), which shows the ranges each network (ASN) announces.
+Amazon comes from Amazon's official list. Google comes from Google's official
+list, goog.json, saved in scripts/goog.json (www.gstatic.com is blocked in the
+cloud environment, so a copy is pasted in by hand: replace that file with a
+fresh copy from https://www.gstatic.com/ipranges/goog.json to update it).
+Every other provider comes from RIPEstat (stat.ripe.net), which shows the
+ranges each network (ASN) announces.
 
 Run from the repo root:  python3 scripts/update_ip_ranges.py
 """
@@ -29,7 +33,9 @@ ASNS = {
 
 AMAZON_URL = "https://ip-ranges.amazonaws.com/ip-ranges.json"
 RIPE_URL = "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS{}"
-OUT = os.path.join(os.path.dirname(__file__), "..", "_data", "ip-ranges.csv")
+HERE = os.path.dirname(__file__)
+GOOG_FILE = os.path.join(HERE, "goog.json")
+OUT = os.path.join(HERE, "..", "_data", "ip-ranges.csv")
 
 
 def get_json(url):
@@ -43,6 +49,14 @@ def amazon_ranges():
     nets = [p["ip_prefix"] for p in data["prefixes"] if p["service"] == "AMAZON"]
     nets += [p["ipv6_prefix"] for p in data["ipv6_prefixes"] if p["service"] == "AMAZON"]
     return nets, "Amazon official list (ip-ranges.amazonaws.com)"
+
+
+def google_ranges():
+    with open(GOOG_FILE) as fh:
+        data = json.load(fh)
+    nets = [p.get("ipv4Prefix") or p.get("ipv6Prefix") for p in data["prefixes"]]
+    published = data["creationTime"][:10]
+    return nets, f"Google official list (goog.json, published {published})"
 
 
 def ripe_ranges(asns):
@@ -70,7 +84,12 @@ def main():
     today = datetime.date.today().isoformat()
     rows = []
     for provider, asns in ASNS.items():
-        nets, source = amazon_ranges() if provider == "Amazon" else ripe_ranges(asns)
+        if provider == "Amazon":
+            nets, source = amazon_ranges()
+        elif provider == "Google":
+            nets, source = google_ranges()
+        else:
+            nets, source = ripe_ranges(asns)
         asn_text = " ".join(f"AS{a}" for a in asns)
         for n in merge(nets):
             rows.append({"provider": provider, "asn": asn_text, "version": f"IPv{n.version}",
