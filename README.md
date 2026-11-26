@@ -6,11 +6,13 @@ domains-list/
 ├── _includes/
 ├── _layouts/
 ├── assets/
-├── scripts/                   ← update_ip_ranges.py (not published)
+├── scripts/                   ← update_ip_ranges.py, fill_notes.py (not published)
 │
 ├── index/                     ← domains index (A–Z + types)
 │
 ├── search/                    ← search every domain
+│
+├── blocklists/                ← main blocklist (main.txt)
 │
 ├── providers/                 ← domains grouped by owner
 │   ├── amazon/

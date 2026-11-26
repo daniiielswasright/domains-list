@@ -1,0 +1,28 @@
+---
+---
+{%- assign safe = site.data.domains | where: "block", "safe" -%}
+{%- assign partial = site.data.domains | where: "block", "partial" -%}
+
+<h1>Blocklists</h1>
+
+<h2>Main blocklist</h2>
+
+<p><strong>{{ safe.size }} domains</strong> &middot; <a href="main.txt">main.txt</a> (plain list, one domain per line)</p>
+
+<p>Every domain on this site that is safe to block: blocking it removes ads or tracking and nothing else.</p>
+
+<table>
+  <thead><tr><th>Included</th><th>Never included</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Ad serving<br>Ad tracking<br>Analytics<br>Telemetry</td>
+      <td>Logins and accounts<br>Payments and shopping<br>Content delivery and streaming<br>App backends, messaging, DNS and network checks<br>App updates and device services</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Not included either: the {{ partial.size }} domains where blocking turns off one feature but the app keeps working (crash reporting, push notifications, consent banners, location lookups, security checks). Block those yourself if you don't need the feature.</p>
+
+<p>The list is built from the <code>block</code> column of the site's data, so it updates whenever a domain is added or reviewed. Each domain's marker on the A–Z, category and provider pages shows which group it is in:</p>
+
+<p class="block-legend"><span><span class="block-dot block-safe"></span>Safe to block</span><span><span class="block-dot block-partial"></span>Blocking turns off one feature</span><span><span class="block-dot block-breaks"></span>Blocking breaks the app or site</span></p>

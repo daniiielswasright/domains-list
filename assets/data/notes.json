@@ -1,0 +1,5 @@
+---
+layout: null
+---
+{%- comment -%} domain -> [note, block], read by assets/js/notes.js {%- endcomment -%}
+{ {%- for r in site.data.domains -%}{{ r.domain | jsonify }}:[{{ r.note | default: "" | jsonify }},{{ r.block | default: "" | jsonify }}]{% unless forloop.last %},{% endunless %}{%- endfor -%} }

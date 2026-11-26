@@ -1,0 +1,12 @@
+---
+layout: null
+permalink: /blocklists/main.txt
+---
+{%- assign safe = site.data.domains | where: "block", "safe" -%}
+# Daniiiels Domains List: main blocklist
+# Ads, ad tracking, analytics and telemetry: domains that are safe to block.
+# Logins, payments, content delivery and app backends are never included.
+# {{ safe.size }} domains, built {{ site.time | date: "%Y-%m-%d" }} from _data/domains.csv
+# https://daniiielswasright.github.io/domains-list/blocklists/
+{% for r in safe %}{{ r.domain }}
+{% endfor %}
