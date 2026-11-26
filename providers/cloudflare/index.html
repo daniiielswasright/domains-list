@@ -7,3 +7,5 @@ owner: Cloudflare
 <p>Cloudflare DNS, CDN, security challenges, Pages and Radar.</p>
 
 {% include provider-domains.html owner=page.owner %}
+
+{% include provider-ips.html owner=page.owner note="Cloudflare also carries traffic for many customers on its own network, so this list includes ranges announced on behalf of Cloudflare customers, not only addresses Cloudflare itself uses." %}

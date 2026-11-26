@@ -1,0 +1,26 @@
+{%- assign ips = site.data.ip-ranges | where: "provider", include.owner -%}
+<h2>IP Ranges</h2>
+{% if ips.size > 0 %}
+{%- assign first = ips | first -%}
+{%- assign asns = first.asn | split: " " -%}
+<p>IP ranges change over time, so use these as a guide, not a guarantee.</p>
+<p>ASN{% if asns.size > 1 %}s{% endif %}: {% for a in asns %}<a href="https://stat.ripe.net/{{ a }}">{{ a }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}<br>
+Source: {{ first.source }} · Last checked: {{ first.checked }}</p>
+{% if include.note %}<p>{{ include.note }}</p>{% endif %}
+{%- assign versions = "IPv4,IPv6" | split: "," -%}
+{% for ver in versions %}
+{%- assign list = ips | where: "version", ver -%}
+{% if list.size > 0 %}
+<details>
+<summary>{{ ver }} · {{ list.size }} range{% if list.size != 1 %}s{% endif %}</summary>
+<ol class="domain-list">
+{%- for r in list %}
+<li>{{ r.range }}</li>
+{%- endfor %}
+</ol>
+</details>
+{% endif %}
+{% endfor %}
+{% else %}
+<p>{{ include.note | default: "No IP ranges have been added for this provider yet." }}</p>
+{% endif %}

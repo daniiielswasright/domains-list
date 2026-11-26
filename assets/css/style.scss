@@ -400,3 +400,33 @@ a.search-owner:visited {
   color: var(--text-secondary);
   overflow-wrap: anywhere;
 }
+
+/* =========================================
+   IP RANGES (collapsible lists)
+   ========================================= */
+
+details {
+  margin: 0 0 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px 14px;
+}
+
+summary {
+  cursor: pointer;
+  color: var(--heading-sub);
+  font-weight: 700;
+}
+
+details[open] summary {
+  margin-bottom: 8px;
+}
+
+details .domain-list {
+  margin-bottom: 4px;
+}
+
+.asn-cell {
+  font-size: 14px;
+  white-space: normal;
+}

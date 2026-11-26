@@ -79,14 +79,15 @@ Threads, WhatsApp), Microsoft, Reddit, Snap, X Corp.
 
 - [ ] New `pages/guide/` page: install PCAPdroid, capture one app, export the domains, look them up here
 
-## 12. IP ranges on provider pages (after item 2)
+## 12. IP ranges on provider pages ✅
 
 A domain's IP changes constantly (CDNs, load balancing, location), so IPs are **not**
 listed per domain. The ranges each company owns are stable, so they go on the provider pages.
 
-- [ ] Create `_data/ip-ranges.csv` with the columns `provider, asn, range, source, checked`
-- [ ] Fill it from official sources where they exist (Google `goog.json`, Cloudflare `ips-v4`/`ips-v6`, AWS `ip-ranges.json`, Microsoft) and by ASN otherwise (e.g. Meta is AS32934)
-- [ ] Add an "IP ranges" section to each provider page: ASN, IPv4/IPv6 ranges, source, last checked date
+- [x] Create `_data/ip-ranges.csv` with the columns `provider, asn, version, range, source, checked` (built by `scripts/update_ip_ranges.py`)
+- [x] Fill it: Amazon from its official list (`ip-ranges.amazonaws.com`); everyone else from RIPEstat by ASN (Google and Cloudflare too, since `www.gstatic.com` and `www.cloudflare.com` aren't allowed in the environment)
+- [x] Add an "IP ranges" section to each provider page: ASN, IPv4/IPv6 ranges, source, last checked date
+- [x] Reddit and Snap: no network of their own, so their pages say so
 - [ ] Optional: an "IPs seen" section with IPs observed in PCAPdroid captures, dated and marked as observations
 
 ---
@@ -97,4 +98,5 @@ listed per domain. The ranges each company owns are stable, so they go on the pr
 - When a list changes, update the domain count at the top of that page, the All page, and the totals on the Domains Index and Search page.
 - When adding a domain, also add a row to `_data/domains.csv` (keep it sorted by root, then domain). Provider pages and owner search update from it automatically.
 - Search reads the live pages, so it updates itself.
+- To refresh the IP ranges, run `python3 scripts/update_ip_ranges.py` from the repo root, then commit `_data/ip-ranges.csv`.
 - The site is published from the `home` branch.

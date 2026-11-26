@@ -2,10 +2,11 @@
 domains-list/
 ├── README.md                  ← site homepage
 ├── _config.yml
-├── _data/                     ← domains.csv (owner data)
+├── _data/                     ← domains.csv, ip-ranges.csv
 ├── _includes/
 ├── _layouts/
 ├── assets/
+├── scripts/                   ← update_ip_ranges.py (not published)
 │
 ├── index/                     ← domains index (A–Z + types)
 │

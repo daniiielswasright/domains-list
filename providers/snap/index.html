@@ -7,3 +7,5 @@ owner: Snap
 <p>Snapchat and Snap Kit.</p>
 
 {% include provider-domains.html owner=page.owner %}
+
+{% include provider-ips.html owner=page.owner note="Snap doesn’t operate its own network, so it has no IP ranges of its own. Its traffic is served through other companies, mainly Google Cloud and AWS." %}
