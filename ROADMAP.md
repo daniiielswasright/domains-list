@@ -85,7 +85,7 @@ A domain's IP changes constantly (CDNs, load balancing, location), so IPs are **
 listed per domain. The ranges each company owns are stable, so they go on the provider pages.
 
 - [x] Create `_data/ip-ranges.csv` with the columns `provider, asn, version, range, source, checked` (built by `scripts/update_ip_ranges.py`)
-- [x] Fill it: Amazon from its official list (`ip-ranges.amazonaws.com`); Google from its official list (`goog.json`, a pasted copy in `scripts/goog.json`, since `www.gstatic.com` is blocked); everyone else, including Cloudflare, from RIPEstat by ASN
+- [x] Fill it: Amazon from its official list (`ip-ranges.amazonaws.com`); Google from its official lists (`goog.json` and `cloud.json`, pasted copies in `scripts/`, since `www.gstatic.com` is blocked), split into Google services and Google Cloud; everyone else, including Cloudflare, from RIPEstat by ASN
 - [x] Add an "IP ranges" section to each provider page: ASN, IPv4/IPv6 ranges, source, last checked date
 - [x] Reddit and Snap: no network of their own, so their pages say so
 - [ ] Optional: an "IPs seen" section with IPs observed in PCAPdroid captures, dated and marked as observations
@@ -98,5 +98,5 @@ listed per domain. The ranges each company owns are stable, so they go on the pr
 - When a list changes, update the domain count at the top of that page, the All page, and the totals on the Domains Index and Search page.
 - When adding a domain, also add a row to `_data/domains.csv` (keep it sorted by root, then domain). Provider pages and owner search update from it automatically.
 - Search reads the live pages, so it updates itself.
-- To refresh the IP ranges, replace `scripts/goog.json` with a fresh copy of https://www.gstatic.com/ipranges/goog.json, run `python3 scripts/update_ip_ranges.py` from the repo root, then commit `_data/ip-ranges.csv`.
+- To refresh the IP ranges, replace `scripts/goog.json` and `scripts/cloud.json` with fresh copies from https://www.gstatic.com/ipranges/, run `python3 scripts/update_ip_ranges.py` from the repo root, then commit `_data/ip-ranges.csv`.
 - The site is published from the `home` branch.

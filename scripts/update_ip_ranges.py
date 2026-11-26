@@ -2,9 +2,12 @@
 """Rebuild _data/ip-ranges.csv: the IP ranges each provider owns.
 
 Amazon comes from Amazon's official list. Google comes from Google's official
-list, goog.json, saved in scripts/goog.json (www.gstatic.com is blocked in the
-cloud environment, so a copy is pasted in by hand: replace that file with a
-fresh copy from https://www.gstatic.com/ipranges/goog.json to update it).
+lists, saved in scripts/ because www.gstatic.com is blocked in the cloud
+environment (replace them with fresh copies to update):
+  scripts/goog.json   https://www.gstatic.com/ipranges/goog.json  (all Google)
+  scripts/cloud.json  https://www.gstatic.com/ipranges/cloud.json (Google Cloud)
+Google is split into two groups, as Google recommends: "Google Cloud" (ranges
+rented to other companies) and "Google services" (goog.json minus cloud.json).
 Every other provider comes from RIPEstat (stat.ripe.net), which shows the
 ranges each network (ASN) announces.
 
@@ -35,6 +38,7 @@ AMAZON_URL = "https://ip-ranges.amazonaws.com/ip-ranges.json"
 RIPE_URL = "https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS{}"
 HERE = os.path.dirname(__file__)
 GOOG_FILE = os.path.join(HERE, "goog.json")
+CLOUD_FILE = os.path.join(HERE, "cloud.json")
 OUT = os.path.join(HERE, "..", "_data", "ip-ranges.csv")
 
 
@@ -51,12 +55,41 @@ def amazon_ranges():
     return nets, "Amazon official list (ip-ranges.amazonaws.com)"
 
 
-def google_ranges():
-    with open(GOOG_FILE) as fh:
+def load_google(path):
+    with open(path) as fh:
         data = json.load(fh)
-    nets = [p.get("ipv4Prefix") or p.get("ipv6Prefix") for p in data["prefixes"]]
-    published = data["creationTime"][:10]
-    return nets, f"Google official list (goog.json, published {published})"
+    nets = [ipaddress.ip_network(p.get("ipv4Prefix") or p.get("ipv6Prefix")) for p in data["prefixes"]]
+    return nets, data["creationTime"][:10]
+
+
+def subtract(nets, remove):
+    """Return the parts of `nets` not covered by any network in `remove`."""
+    out = []
+    for n in nets:
+        parts = [n]
+        for r in remove:
+            if r.version != n.version:
+                continue
+            nxt = []
+            for p in parts:
+                if r.subnet_of(p):
+                    nxt.extend(x for x in p.address_exclude(r))
+                elif p.subnet_of(r):
+                    pass  # fully removed
+                else:
+                    nxt.append(p)
+            parts = nxt
+        out.extend(parts)
+    return out
+
+
+def google_groups():
+    goog, published = load_google(GOOG_FILE)
+    cloud, _ = load_google(CLOUD_FILE)
+    services = subtract(goog, cloud)
+    src = f"Google official lists (goog.json and cloud.json, published {published})"
+    return [("Google services", [str(n) for n in services], src),
+            ("Google Cloud", [str(n) for n in cloud], src)]
 
 
 def ripe_ranges(asns):
@@ -85,20 +118,22 @@ def main():
     rows = []
     for provider, asns in ASNS.items():
         if provider == "Amazon":
-            nets, source = amazon_ranges()
+            groups = [("", *amazon_ranges())]
         elif provider == "Google":
-            nets, source = google_ranges()
+            groups = google_groups()
         else:
-            nets, source = ripe_ranges(asns)
+            groups = [("", *ripe_ranges(asns))]
         asn_text = " ".join(f"AS{a}" for a in asns)
-        for n in merge(nets):
-            rows.append({"provider": provider, "asn": asn_text, "version": f"IPv{n.version}",
-                         "range": str(n), "source": source, "checked": today})
+        for group, nets, source in groups:
+            for n in merge(nets):
+                rows.append({"provider": provider, "group": group, "asn": asn_text,
+                             "version": f"IPv{n.version}", "range": str(n),
+                             "source": source, "checked": today})
         v4 = sum(1 for r in rows if r["provider"] == provider and r["version"] == "IPv4")
         v6 = sum(1 for r in rows if r["provider"] == provider and r["version"] == "IPv6")
         print(f"{provider:11} {asn_text:40} IPv4 {v4:5}  IPv6 {v6:5}")
     with open(OUT, "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=["provider", "asn", "version", "range", "source", "checked"],
+        w = csv.DictWriter(fh, fieldnames=["provider", "group", "asn", "version", "range", "source", "checked"],
                            lineterminator="\n")
         w.writeheader()
         w.writerows(rows)

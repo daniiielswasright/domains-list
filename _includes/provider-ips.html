@@ -8,8 +8,14 @@
 Source: {{ first.source }} · Last checked: {{ first.checked }}</p>
 {% if include.note %}<p>{{ include.note }}</p>{% endif %}
 {%- assign versions = "IPv4,IPv6" | split: "," -%}
+{%- assign groups = ips | group_by: "group" -%}
+{% for g in groups %}
+{% if g.name != "" %}<h3>{{ g.name }}</h3>
+{% if g.name == "Google services" %}<p>Addresses Google uses for its own services, such as Search, YouTube, Gmail and Android.</p>{% endif %}
+{% if g.name == "Google Cloud" %}<p>Addresses Google Cloud rents to other companies, so many of these belong to websites and apps that aren’t Google’s own.</p>{% endif %}
+{% endif %}
 {% for ver in versions %}
-{%- assign list = ips | where: "version", ver -%}
+{%- assign list = g.items | where: "version", ver -%}
 {% if list.size > 0 %}
 <details>
 <summary>{{ ver }} · {{ list.size }} range{% if list.size != 1 %}s{% endif %}</summary>
@@ -20,6 +26,7 @@ Source: {{ first.source }} · Last checked: {{ first.checked }}</p>
 </ol>
 </details>
 {% endif %}
+{% endfor %}
 {% endfor %}
 {% else %}
 <p>{{ include.note | default: "No IP ranges have been added for this provider yet." }}</p>
